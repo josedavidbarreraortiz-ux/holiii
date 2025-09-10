@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Collage de Amor con Hello Kitty 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(45deg, #ffb3d9, #ffd6e8, #ffe6f0, #fff0f5);
+            background-size: 400% 400%;
+            animation: gradientShift 6s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 3em;
+            color: #d63384;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #d63384;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+        
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .image-card {
+            position: relative;
+            height: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: rotate(-2deg);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 3px solid rgba(255, 182, 193, 0.4);
+        }
+        
+        .image-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+        
+        .image-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 20px 50px rgba(214, 51, 132, 0.3);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ff69b4, #ffc0cb, #ffb6c1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 2;
+        }
+        
+        .image-card:hover .image-overlay {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+        
+        .overlay-emoji {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+        
+        @keyframes wiggle {
+            0%, 7% { transform: rotateZ(0); }
+            15% { transform: rotateZ(-15deg); }
+            20% { transform: rotateZ(10deg); }
+            25% { transform: rotateZ(-10deg); }
+            30% { transform: rotateZ(6deg); }
+            35% { transform: rotateZ(-4deg); }
+            40%, 100% { transform: rotateZ(0); }
+        }
+        
+        .overlay-text {
+            color: white;
+            font-size: 1.3em;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hidden-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        
+        .image-card:hover .hidden-image {
+            transform: scale(1.05);
+            filter: brightness(1.1) saturate(1.2);
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 105, 180, 0.4);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .love-message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #d63384;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #dc143c, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s ease-in-out infinite;
+        }
+        
+        @keyframes rainbow {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+        }
+        
+        .sparkle-effect {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="container">
+        <h1 class="title rainbow-text">🖤 i love u so much 🖤</h1>
+        
+        <div class="instructions">
+            <h3>Te amo amor mio,</h3>
+            <p>I dont seek perfection - Only the chance to make - things right - to hold you closer than before - to love you deeper with every breath.</p>
+        </div>
+        
+        <div class="collage-grid">
+            
+            <div class="image-card">
+                <img src="Imagen de WhatsApp 2025-09-10 a las 00.26.44_351f86b4.jpg" alt="Hello Kitty" class="hidden-image" 
+                     onerror="this.src='https://via.placeholder.com/400x280/ff69b4/ffffff?text=Hello+Kitty+💕'">
+                <div class="image-overlay">
+                    <div class="overlay-emoji">🐱</div>
+                    <div class="overlay-text"><br>La mash bonitaaa</div>
+                </div>
+                <div class="sparkle-effect" style="top: 50px; left: 30px; animation-delay: 0s;"></div>
+                <div class="sparkle-effect" style="bottom: 30px; right: 25px; animation-delay: 1s;"></div>
+            </div>
+            
+           
+            <div class="image-card">
+                <img src="Imagen de WhatsApp 2025-09-10 a las 00.26.44_886c2775.jpg" alt="Flores bonitas" class="hidden-image"
+                     onerror="this.src='https://via.placeholder.com/400x280/ffc0cb/ffffff?text=Flores+🌸'">
+                <div class="image-overlay">
+                    <div class="overlay-emoji">🖤🖤</div>
+                    <div class="overlay-text">TE AMOOOO<br></div>
+                </div>
+                <div class="sparkle-effect" style="top: 50px; right: 20px; animation-delay: 0.5s;"></div>
+            </div>
+            
+        
+            <div class="image-card">
+                <img src="Imagen de WhatsApp 2025-09-10 a las 00.26.45_4ba565b2.jpg" alt="Lazo bonito" class="hidden-image"
+                     onerror="this.src='https://via.placeholder.com/400x280/ffb6c1/ffffff?text=Lazo+🎀'">
+                <div class="image-overlay">
+                    <div class="overlay-emoji">👀</div>
+                    <div class="overlay-text">Ojos hermosos<br> Que iluminan mi ser</div>
+                </div>
+                <div class="sparkle-effect" style="top: 15px; left: 40px; animation-delay: 1.5s;"></div>
+            </div>
+            
+  
+            <div class="image-card">
+                <img src="si.jpg" alt="Imagen especial" class="hidden-image"
+                     onerror="this.src='https://via.placeholder.com/400x280/dda0dd/ffffff?text=Amor+💕'">
+                <div class="image-overlay">
+                    <div class="overlay-emoji">😍</div>
+                    <div class="overlay-text">My Wife<br>U are so special</div>
+                </div>
+                <div class="sparkle-effect" style="top: 35px; left: 50px; animation-delay: 0.3s;"></div>
+                <div class="sparkle-effect" style="bottom: 20px; right: 30px; animation-delay: 1.2s;"></div>
+            </div>
+        </div>
+        
+        <div class="love-message">
+            <h2 class="rainbow-text">Can i get kiss, and can u make last forever?</h2>
+            <p></p>
+            <div style="margin-top: 20px; font-size: 1.5em;">
+                🖤🖤😍❤️🙈
+            </div>
+        </div>
+    </div>
+    
+    <script>
+ 
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💖', '💕', '💗', '💘', '💝', '🌸'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        
+
+        setInterval(createHeart, 3000);
+        
+
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+        
+
+        document.querySelectorAll('.image-card').forEach(card => {
+            card.addEventListener('click', function() {
+
+                this.classList.toggle('active');
+                
+           
+
+                for(let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'sparkle-effect';
+                        sparkle.style.top = Math.random() * 80 + '%';
+                        sparkle.style.left = Math.random() * 80 + '%';
+                        sparkle.style.animationDelay = Math.random() * 1 + 's';
+                        this.appendChild(sparkle);
+                        
+                        setTimeout(() => sparkle.remove(), 2000);
+                    }, i * 100);
+                }
+            });
+            
+
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('active');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('active');
+            });
+        });
+        
+    </script>
+</body>
+</html>
